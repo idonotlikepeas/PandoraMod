@@ -1,5 +1,6 @@
 package com.bluestreakgames.pandoramod;
 
+import com.bluestreakgames.pandoramod.item.crafting.PandoraRecipes;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -12,6 +13,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+        PandoraRecipes.addRecipes();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
