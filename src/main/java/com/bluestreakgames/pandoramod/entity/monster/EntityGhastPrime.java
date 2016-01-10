@@ -5,7 +5,9 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
@@ -76,6 +78,16 @@ public class EntityGhastPrime extends EntityGhast {
         }
 
         return true;
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+
+        // Explode on death, because why not?
+        if(!this.worldObj.isRemote && this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL) {
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 3, true, true);
+        }
     }
 
     /**
