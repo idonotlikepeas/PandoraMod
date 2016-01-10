@@ -1,11 +1,6 @@
 package com.bluestreakgames.pandoramod;
 
 import com.bluestreakgames.pandoramod.entity.EntityManager;
-import com.bluestreakgames.pandoramod.entity.monster.EntityCreeperPrime;
-import com.bluestreakgames.pandoramod.entity.monster.RenderCreeperPrime;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
