@@ -16,6 +16,7 @@ import net.minecraft.world.World;
  */
 public class EntityGhastPrime extends EntityGhast {
     protected int maxFlyHeight = 96;
+    protected int explosionRadius = 3;
 
     public EntityGhastPrime(World worldIn) {
         super(worldIn);
@@ -86,7 +87,8 @@ public class EntityGhastPrime extends EntityGhast {
 
         // Explode on death, because why not?
         if(!this.worldObj.isRemote && this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL) {
-            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 3, true, true);
+            boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, explosionRadius, true, flag);
         }
     }
 
