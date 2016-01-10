@@ -28,18 +28,16 @@ public class EntityCreeperPrime extends EntityCreeper {
         super.onUpdate();
 
         if(!this.isRiding() && !this.worldObj.isRemote && this.isEntityAlive()) {
-            for (int l = 0; l < 4; ++l)
-            {
-                int i = MathHelper.floor_double(this.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
-                int j = MathHelper.floor_double(this.posY);
-                int k = MathHelper.floor_double(this.posZ + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25F));
+            // Leave trail of fire
+            int i = MathHelper.floor_double(this.posX);
+            int j = MathHelper.floor_double(this.posY);
+            int k = MathHelper.floor_double(this.posZ);
 
-                Material blockMaterial = this.worldObj.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial();
-                if (blockMaterial == Material.air) {
-                    this.worldObj.setBlockState(new BlockPos(i, j, k), Blocks.fire.getDefaultState());
-                } else if (blockMaterial == Material.snow) {
-                    this.worldObj.setBlockState(new BlockPos(i, j, k), Blocks.air.getDefaultState());
-                }
+            Material blockMaterial = this.worldObj.getBlockState(new BlockPos(i, j, k)).getBlock().getMaterial();
+            if (blockMaterial == Material.air) {
+                this.worldObj.setBlockState(new BlockPos(i, j, k), Blocks.fire.getDefaultState());
+            } else if (blockMaterial == Material.snow) {
+                this.worldObj.setBlockState(new BlockPos(i, j, k), Blocks.air.getDefaultState());
             }
         }
     }
