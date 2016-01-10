@@ -1,5 +1,6 @@
 package com.bluestreakgames.pandoramod.entity.monster;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.EntityGhast;
@@ -22,6 +23,17 @@ public class EntityGhastPrime extends EntityGhast {
 
         // It's a baby compared to Hell's Ghasts :)
         this.setSize(2.0F, 2.0F);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+
+        // We set the follow range higher because the distances between the player and it are
+        // likely to be larger in the overworld - health is lower because they're harder to hit
+        // at that distance
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(100.0D);
     }
 
     @Override
