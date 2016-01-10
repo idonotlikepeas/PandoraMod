@@ -1,6 +1,7 @@
 package com.bluestreakgames.pandoramod.entity;
 
 import com.bluestreakgames.pandoramod.PandoraMod;
+import com.bluestreakgames.pandoramod.entity.monster.ChickenPrime;
 import com.bluestreakgames.pandoramod.entity.monster.CreeperPrime;
 import com.bluestreakgames.pandoramod.entity.monster.GhastPrime;
 import com.bluestreakgames.pandoramod.entity.monster.IPandoraMob;
@@ -28,6 +29,8 @@ public class EntityManager {
         monsters.add(cp);
         GhastPrime gp = new GhastPrime();
         monsters.add(gp);
+        ChickenPrime chp = new ChickenPrime();
+        monsters.add(chp);
 
         for(IPandoraMob monster : monsters) {
             EntityRegistry.registerModEntity(monster.getEntityClass(), monster.getEntityName(), ++idCounter, PandoraMod.instance, monster.getTrackingRange(), monster.getUpdateFrequency(), monster.getSendsVelocityUpdates(), monster.getEggPrimary(), monster.getEggSecondary());
