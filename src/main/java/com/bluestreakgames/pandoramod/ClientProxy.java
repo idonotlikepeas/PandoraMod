@@ -1,5 +1,6 @@
 package com.bluestreakgames.pandoramod;
 
+import com.bluestreakgames.pandoramod.entity.EntityManager;
 import com.bluestreakgames.pandoramod.entity.monster.EntityCreeperPrime;
 import com.bluestreakgames.pandoramod.entity.monster.RenderCreeperPrime;
 import net.minecraft.client.Minecraft;
@@ -21,8 +22,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-        RenderManager manager = Minecraft.getMinecraft().getRenderManager();
-        RenderingRegistry.registerEntityRenderingHandler(EntityCreeperPrime.class, new RenderCreeperPrime(manager));
+        EntityManager.registerMonsterRenderers();
     }
 
     @Override

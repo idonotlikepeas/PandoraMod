@@ -1,43 +1,50 @@
 package com.bluestreakgames.pandoramod.entity.monster;
 
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 
 /**
  * Created by jkantzer on 1/9/16.
  */
-public class CreeperPrime extends AbstractPandoraMob {
+public class CreeperPrime implements IPandoraMob {
     @Override
-    Class<? extends Entity> getEntityClass() {
+    public Class<? extends Entity> getEntityClass() {
         return EntityCreeperPrime.class;
     }
 
     @Override
-    String getEntityName() {
+    public Render getEntityRenderer(RenderManager manager) {
+        return new RenderCreeperPrime(manager);
+    }
+
+    @Override
+    public String getEntityName() {
         return "CreeperPrime";
     }
 
     @Override
-    int getTrackingRange() {
+    public int getTrackingRange() {
         return 64;
     }
 
     @Override
-    int getUpdateFrequency() {
+    public int getUpdateFrequency() {
         return 3;
     }
 
     @Override
-    boolean getSendsVelocityUpdates() {
+    public boolean getSendsVelocityUpdates() {
         return true;
     }
 
     @Override
-    int getEggPrimary() {
+    public int getEggPrimary() {
         return 0;
     }
 
     @Override
-    int getEggSecondary() {
+    public int getEggSecondary() {
         return 26112;
     }
 }
