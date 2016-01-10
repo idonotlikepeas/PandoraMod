@@ -57,7 +57,7 @@ public class CreeperPrime implements IPandoraMob {
 
     @Override
     public int getSpawnWeightedProb() {
-        return 8;
+        return 50;
     }
 
     @Override

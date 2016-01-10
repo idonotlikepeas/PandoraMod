@@ -52,7 +52,7 @@ public class GhastPrime implements IPandoraMob {
 
     @Override
     public int getSpawnWeightedProb() {
-        return 10;
+        return 50;
     }
 
     @Override
