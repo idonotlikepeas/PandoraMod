@@ -18,6 +18,24 @@ public class EntityGhastPrime extends EntityGhast {
     }
 
     @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        // Set fire in daylight - basically ripped wholesale from EntitySkeleton
+        if (this.worldObj.isDaytime() && !this.worldObj.isRemote)
+        {
+            float f = this.getBrightness(1.0F);
+            BlockPos blockpos = new BlockPos(this.posX, (double)Math.round(this.posY), this.posZ);
+
+            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canSeeSky(blockpos))
+            {
+                this.isImmuneToFire = false;
+                this.setFire(8);
+            }
+        }
+    }
+
+    @Override
     public boolean getCanSpawnHere() {
         // If a normal Ghast couldn't spawn here, this can't either
         boolean superCanSpawnHere = super.getCanSpawnHere();
