@@ -1,5 +1,7 @@
 package com.bluestreakgames.pandoramod.entity.monster;
 
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -10,8 +12,13 @@ import net.minecraft.world.World;
  * Created by jkantzer on 1/10/16.
  */
 public class EntityGhastPrime extends EntityGhast {
+    protected int maxFlyHeight = 96;
+
     public EntityGhastPrime(World worldIn) {
         super(worldIn);
+
+        // We limit fly height because there's no ceiling in the overworld
+        tasks.addTask(6, new EntityGhastPrime.AIFlyHeightLimiter());
 
         // It's a baby compared to Hell's Ghasts :)
         this.setSize(2.0F, 2.0F);
@@ -86,6 +93,23 @@ public class EntityGhastPrime extends EntityGhast {
             }
 
             return i <= this.rand.nextInt(8);
+        }
+    }
+
+    class AIFlyHeightLimiter extends EntityAIBase {
+        EntityMoveHelper entityMoveHelper;
+
+        @Override
+        public boolean shouldExecute() {
+            entityMoveHelper = EntityGhastPrime.this.getMoveHelper();
+
+            // We let the Ghast Prime go above max height if attacking someone
+            return entityMoveHelper.func_179919_e() > maxFlyHeight && getAttackTarget() == null;
+        }
+
+        @Override
+        public void startExecuting() {
+            entityMoveHelper.setMoveTo(entityMoveHelper.func_179917_d(), maxFlyHeight, entityMoveHelper.func_179918_f(), entityMoveHelper.getSpeed());
         }
     }
 }
