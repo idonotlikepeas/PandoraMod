@@ -1,18 +1,18 @@
 package com.bluestreakgames.pandoramod.entity;
 
 import com.bluestreakgames.pandoramod.PandoraMod;
-import com.bluestreakgames.pandoramod.entity.monster.IPandoraMob;
+import com.bluestreakgames.pandoramod.entity.monster.ChickenPrime;
 import com.bluestreakgames.pandoramod.entity.monster.CreeperPrime;
+import com.bluestreakgames.pandoramod.entity.monster.GhastPrime;
+import com.bluestreakgames.pandoramod.entity.monster.IPandoraMob;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import scala.actors.threadpool.Arrays;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -27,13 +27,18 @@ public class EntityManager {
 
         CreeperPrime cp = new CreeperPrime();
         monsters.add(cp);
+        GhastPrime gp = new GhastPrime();
+        monsters.add(gp);
+        ChickenPrime chp = new ChickenPrime();
+        monsters.add(chp);
 
         for(IPandoraMob monster : monsters) {
             EntityRegistry.registerModEntity(monster.getEntityClass(), monster.getEntityName(), ++idCounter, PandoraMod.instance, monster.getTrackingRange(), monster.getUpdateFrequency(), monster.getSendsVelocityUpdates(), monster.getEggPrimary(), monster.getEggSecondary());
-            EntityRegistry.addSpawn(monster.getEntityClass(), monster.getSpawnWeightedProb(), monster.getSpawnMin(), monster.getSpawnMax(), EnumCreatureType.MONSTER, monster.getBiomesForSpawn());
+            EntityRegistry.addSpawn(monster.getEntityClass(), monster.getSpawnWeightedProb(), monster.getSpawnMin(), monster.getSpawnMax(), monster.getCreatureType(), monster.getBiomesForSpawn());
         }
 
         DungeonHooks.addDungeonMob("CreeperPrime", 100);
+        DungeonHooks.addDungeonMob("ChickenPrime", 50);
     }
 
     public static void registerMonsterRenderers() {

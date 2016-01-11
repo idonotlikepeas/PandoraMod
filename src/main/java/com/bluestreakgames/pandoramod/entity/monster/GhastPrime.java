@@ -8,27 +8,22 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 
 /**
- * Created by jkantzer on 1/9/16.
+ * Created by jkantzer on 1/10/16.
  */
-public class CreeperPrime implements IPandoraMob {
+public class GhastPrime implements IPandoraMob {
     @Override
     public Class<? extends EntityLiving> getEntityClass() {
-        return EntityCreeperPrime.class;
-    }
-
-    @Override
-    public Render getEntityRenderer(RenderManager manager) {
-        return new RenderCreeperPrime(manager);
+        return EntityGhastPrime.class;
     }
 
     @Override
     public String getEntityName() {
-        return "CreeperPrime";
+        return "GhastPrime";
     }
 
     @Override
     public int getTrackingRange() {
-        return 64;
+        return 80;
     }
 
     @Override
@@ -48,7 +43,7 @@ public class CreeperPrime implements IPandoraMob {
 
     @Override
     public int getEggSecondary() {
-        return 26112;
+        return 11184810;
     }
 
     @Override
@@ -74,5 +69,10 @@ public class CreeperPrime implements IPandoraMob {
     @Override
     public int getSpawnMax() {
         return 4;
+    }
+
+    @Override
+    public Render getEntityRenderer(RenderManager manager) {
+        return new RenderGhastPrime(manager);
     }
 }
