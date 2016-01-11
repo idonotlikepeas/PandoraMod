@@ -3,6 +3,7 @@ package com.bluestreakgames.pandoramod.entity.monster;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 
 /**
@@ -17,6 +18,7 @@ public interface IPandoraMob {
     int getEggPrimary();
     int getEggSecondary();
 
+    EnumCreatureType getCreatureType();
     BiomeGenBase[] getBiomesForSpawn();
     int getSpawnWeightedProb();
     int getSpawnMin();

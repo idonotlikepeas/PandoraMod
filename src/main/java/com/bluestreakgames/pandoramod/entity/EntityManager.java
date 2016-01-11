@@ -34,10 +34,11 @@ public class EntityManager {
 
         for(IPandoraMob monster : monsters) {
             EntityRegistry.registerModEntity(monster.getEntityClass(), monster.getEntityName(), ++idCounter, PandoraMod.instance, monster.getTrackingRange(), monster.getUpdateFrequency(), monster.getSendsVelocityUpdates(), monster.getEggPrimary(), monster.getEggSecondary());
-            EntityRegistry.addSpawn(monster.getEntityClass(), monster.getSpawnWeightedProb(), monster.getSpawnMin(), monster.getSpawnMax(), EnumCreatureType.MONSTER, monster.getBiomesForSpawn());
+            EntityRegistry.addSpawn(monster.getEntityClass(), monster.getSpawnWeightedProb(), monster.getSpawnMin(), monster.getSpawnMax(), monster.getCreatureType(), monster.getBiomesForSpawn());
         }
 
         DungeonHooks.addDungeonMob("CreeperPrime", 100);
+        DungeonHooks.addDungeonMob("ChickenPrime", 50);
     }
 
     public static void registerMonsterRenderers() {

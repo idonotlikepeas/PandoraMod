@@ -4,6 +4,7 @@ import com.bluestreakgames.pandoramod.entity.EntityManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 
 /**
@@ -48,6 +49,11 @@ public class CreeperPrime implements IPandoraMob {
     @Override
     public int getEggSecondary() {
         return 26112;
+    }
+
+    @Override
+    public EnumCreatureType getCreatureType() {
+        return EnumCreatureType.MONSTER;
     }
 
     @Override
